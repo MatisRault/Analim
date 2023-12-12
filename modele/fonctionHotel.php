@@ -120,9 +120,11 @@
         return $this->prixDejeuner;
     }
 
-    public function setPrixDejeuner(int $prixDejeuner){
-        $this->prix_Dejeuner = $prixDejeuner;
-    }
+        public function setPrixDejeuner(bool $prixDejeuner){
+            $this->prixDejeuner = $prixDejeuner;
+        }
+    
+    
 
     public function addHotel(){
         include_once "./bdd/bd_connexion.php";

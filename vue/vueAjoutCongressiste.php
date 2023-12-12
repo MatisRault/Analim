@@ -1,5 +1,23 @@
 <div class="AllCard">
     <div class="card">
+    <?php
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $nom = $_POST["nom"];
+    $prenom = $_POST["prenom"];
+    $adresse = $_POST["adresse"];
+    $cp = $_POST["cp"];
+    $ville = $_POST["ville"];
+    $tel = $_POST["tel"];
+    $mail = $_POST["mail"];
+    $etoileSouhaitee = intval($_POST["etoileSouhaitee"]);
+    $petitDejeuner = isset($_POST['petitDejeuner']) ? 1 : 0; // If the checkbox is checked, set $petitDejeuner to 1, otherwise to 0
+    $congressiste = new Congressiste($nom, $prenom, $mail, $adresse, $ville, $cp, $tel, $petitDejeuner, $etoileSouhaitee);
+
+    $resultat = $congressiste->addUnCongressiste();
+}
+?>
+
+
 
 <form class="contenu" method="POST">
     <p>Ajouter un Congressiste</p>
@@ -19,31 +37,11 @@
    <option value="5">⭐⭐⭐⭐⭐</option>
     </div>
 </select><br>
-<label style="color : black" for="petitDejeuner">Petit déjeuner</label>
-<input type="checkbox" name="petitDejeuner" value="1" <?php echo $petitDejeuner = true ? 'checked="checked"' : ''; ?>>
-    
+<input type="checkbox" name="petitDejeuner" value="1">
 
     <input type="submit" value="S'inscrire">
-</form> 
+</form> <p>test</p>
 
-<?php
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $nom = $_POST["nom"];
-    $prenom = $_POST["prenom"];
-    $adresse = $_POST["adresse"];
-    $cp = $_POST["cp"];
-    $ville = $_POST["ville"];
-    $tel = $_POST["tel"];
-    $mail = $_POST["mail"];
-    $etoileSouhaitee = intval($_POST["etoileSouhaitee"]);
-    $petitDejeuner = isset($_POST['petitDejeuner']) ? $_POST['petitDejeuner'] : 0;
-    $congressiste = new Congressiste($nom, $prenom, $mail, $adresse, $ville, $cp, $tel, null, null,  $petitDejeuner, $etoileSouhaitee);
-
-    $resultat = $congressiste->addUnCongressiste();
-
-
-}
-?>
 </div>
 </div>
 

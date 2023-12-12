@@ -10,21 +10,22 @@
         private string $tel; 
         private string $idHotel;
         private string $idOrganisme;
-        private bool $petitDejeuner;
+        private int $petitDejeuner;
         private int $etoileSouhaitee;
 
-        public function __construct(string $nom = '', string $prenom = '', string $email = '', string $adresse = '', string $ville = '', string $codePostal = '', string $tel = '', bool $petitDejeuner = false, int $etoileSouhaitee = 0) {
-            
+        public function __construct(string $nom = '', string $prenom = '', string $email = '', string $adresse = '', string $ville = '', string $codePostal = '', string $tel = '',int $petitDejeuner = 0, int $etoileSouhaitee = 0) {
             $this->nom = $nom;
-            $this->prenom = $prenom;
-            $this->email = $email;
-            $this->adresse = $adresse;
-            $this->ville = $ville;
-            $this->codePostal = $codePostal;
-            $this->tel = $tel;
-            $this->petitDejeuner = $petitDejeuner;
-            $this->etoileSouhaitee = $etoileSouhaitee;
+        $this->prenom = $prenom;
+        $this->email = $email;
+        $this->adresse = $adresse;
+        $this->ville = $ville;
+        $this->codePostal = $codePostal;
+        $this->tel = $tel;
+        $this->petitDejeuner = $petitDejeuner;
+        $this->etoileSouhaitee = $etoileSouhaitee;
         }
+        
+        
 
         public function getNom() {
             return $this->nom;
@@ -77,15 +78,18 @@
         public function getPetitDejeuner() {
             return $this->petitDejeuner;
         }
-        public function setPetitDejeuner(string $petitDejeuner) {
-            $this->petitDejeuner = $petitDejeuner;
-        }
+        
         public function getEtoileSouhaitee() {
             return $this->etoileSouhaitee;
         }
-        public function setEtoileSouhaitee(string $etoileSouhaitee) {
+        public function setPetitDejeuner(int $petitDejeuner) {
+            $this->petitDejeuner = $petitDejeuner;
+        }
+        
+        public function setEtoileSouhaitee(int $etoileSouhaitee) {
             $this->etoileSouhaitee = $etoileSouhaitee;
         }
+        
 
         public function addUnCongressiste(){
             include "./bdd/bd_connexion.php";
@@ -98,8 +102,8 @@
             $stmt->bindValue(5, $this->ville);
             $stmt->bindValue(6, $this->codePostal);
             $stmt->bindValue(7, $this->tel);
-            $stmt->bindValue(8, null);
-            $stmt->bindValue(9, null);
+            $stmt->bindValue(8, null); // Consider if this null corresponds to an actual column
+            $stmt->bindValue(9, null); // Consider if this null corresponds to an actual column
             $stmt->bindValue(10, $this->petitDejeuner);
             $stmt->bindValue(11, $this->etoileSouhaitee);
             $stmt->execute();
@@ -126,7 +130,7 @@
             
             public function ModifUnCongressite($id) {
                 include "./bdd/bd_connexion.php";
-                $sql = "UPDATE congressiste SET nom = ?, prenom = ?, mail = ?, adresse = ?, ville = ?, CP = ?, tel = ?, petitDejeuner = ?, etoileSouhaitee=? WHERE id = ?";
+                $sql = "UPDATE congressiste SET nom = ?, prenom = ?, email = ?, adresse = ?, ville = ?, codePostal = ?, tel = ?, petitDejeuner = ?, etoileSouhaitee = ? WHERE id = ?";
                 $stmt = $conn->prepare($sql);
                 $stmt->bindValue(1, $this->nom);
                 $stmt->bindValue(2, $this->prenom);
