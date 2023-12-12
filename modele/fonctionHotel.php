@@ -189,5 +189,17 @@
         return $stmt->execute();
 
     }
+
+    //fonction qui affiche les Hotels par l'étoile choisie
+    public function getHotelByEtoile($etoileSouhaitee){
+        include "./bdd/bd_connexion.php";
+        $sql = "SELECT * FROM hotel WHERE typeHotel = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindValue(1, $etoileSouhaitee);
+        $stmt->execute();
+        $resultat = $stmt->fetchAll(PDO::FETCH_OBJ);
+        return $resultat;
+    }
+
    }
 ?>

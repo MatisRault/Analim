@@ -10,6 +10,7 @@ function controleurPrincipal($action){
     $lesActions["ajoutHotel"] = "ajoutHotel.php";
     $lesActions["listeHotel"] = "listeHotel.php";
     $lesActions["gestionHotel"] = "gestionHotel.php";
+    $lesActions["assignerHotel"] = "assignerHotel.php";
 
     $lesActions["ajoutActivite"] = "ajoutActivite.php";
     $lesActions["listeActivite"] = "listeActivite.php";

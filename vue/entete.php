@@ -19,6 +19,7 @@
         <li><a href='?action=ajoutHotel'>Ajouter un Hotel</a></li>
         <li><a href='?action=gestionHotel'>Gestion des Hotels</a></li>
         <li><a href='?action=listeHotel'>Liste des Hotels</a></li>
+        <li><a href='?action=assignerHotel'>Assigner des Hotels</a></li>
       </ul>
     </li>
     <li><a class='dropdown-arrow' href='#'>Activité</a>

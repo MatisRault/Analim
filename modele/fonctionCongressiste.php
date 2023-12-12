@@ -145,7 +145,24 @@
 
                 $stmt->execute();
             }
-
             
+            public function recupUnCongressisteSansHotel(){
+                include "./bdd/bd_connexion.php";
+                $sql = "SELECT * FROM congressiste WHERE id_Hotel IS NULL";
+                $stmt=$conn->prepare($sql);
+                $stmt->execute();
+                $resultat=$stmt->fetchAll(PDO::FETCH_OBJ);
+                return $resultat;
+            }
+            
+            public function updateHotelForCongressiste($congressisteId, $hotelId) {
+                include "./bdd/bd_connexion.php";
+                $sql = "UPDATE congressiste SET id_Hotel = ? WHERE id = ?";
+                $stmt = $conn->prepare($sql);
+                $stmt->bindValue(1, $hotelId);
+                $stmt->bindValue(2, $congressisteId);
+                $stmt->execute();
+            }
+    
             
     }
